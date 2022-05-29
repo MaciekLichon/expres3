@@ -22,9 +22,18 @@ router.route('/seats').post((req, res) => {
   const id = shortid.generate();
   const { day, seat, client, email } = req.body;
 
+  const checkSeat = item => {
+    return (item["seat"] == seat && item["day"] == day);
+  };
+  const alreadySelected = db.seats.some(checkSeat);
+
   if (id && day && seat && client && email) {
-    db.seats.push({ id, day, seat, client, email });
-    res.json({ message: 'OK' });
+    if (alreadySelected) {
+      res.json({ message: 'The slot is already taken...' });
+    } else {
+      db.seats.push({ id, day, seat, client, email });
+      res.json({ message: 'OK' });
+    }
   } else {
     res.json({ message: 'missing data' });
   }
