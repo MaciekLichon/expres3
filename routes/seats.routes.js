@@ -3,6 +3,7 @@ const shortid = require('shortid');
 const router = express.Router();
 const db = require('./../db');
 
+
 router.route('/seats').get((req, res) => {
   res.json(db.seats);
 });
@@ -32,6 +33,7 @@ router.route('/seats').post((req, res) => {
       res.json({ message: 'The slot is already taken...' });
     } else {
       db.seats.push({ id, day, seat, client, email });
+      req.io.emit('seatsUpdated', db.seats);
       res.json({ message: 'OK' });
     }
   } else {
