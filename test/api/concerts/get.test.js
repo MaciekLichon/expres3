@@ -17,7 +17,8 @@ describe('GET /api/concerts', () => {
       genre: 'Genre 1',
       price: 30,
       day: 1,
-      image: 'Image 1'
+      image: 'Image 1',
+      tickets: 3
     });
     await testConOne.save();
 
@@ -27,7 +28,8 @@ describe('GET /api/concerts', () => {
       genre: 'Genre 3',
       price: 40,
       day: 2,
-      image: 'Image 2'
+      image: 'Image 2',
+      tickets: 2
     });
     await testConTwo.save();
 
@@ -37,7 +39,8 @@ describe('GET /api/concerts', () => {
       genre: 'Genre 3',
       price: 50,
       day: 3,
-      image: 'Image 2'
+      image: 'Image 2',
+      tickets: 1
     });
     await testConThree.save();
   });
@@ -51,6 +54,12 @@ describe('GET /api/concerts', () => {
     expect(res.status).to.be.equal(200);
     expect(res.body).to.be.an('array');
     expect(res.body.length).to.be.equal(3);
+  });
+
+  it('/ should include available tickets', async () => {
+    const res = await request(server).get('/api/concerts');
+    expect(res.status).to.be.equal(200);
+    expect(res.body[0].tickets).to.be.an('number');
   });
 
   it('/:id should return one concert by :id ', async () => {
