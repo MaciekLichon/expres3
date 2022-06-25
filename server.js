@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const socket = require('socket.io');
+const helmet = require('helmet');
 
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertsRoutes = require('./routes/concerts.routes');
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(helmet());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

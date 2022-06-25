@@ -16,12 +16,15 @@
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^3.21.1",
     "mocha": "^6.2.1",
+    "mongo-sanitize": "^1.1.0",
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.1",
     "nodemon": "^2.0.16",
     "path": "^0.12.7",
     "shortid": "^2.2.16",
+    "snyk": "^1.958.0",
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1"
   }

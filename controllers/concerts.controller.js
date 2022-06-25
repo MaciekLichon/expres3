@@ -9,7 +9,7 @@ exports.getAll = async (req, res) => {
       const seats = await Seat.find({ day: concert.day });
       concert.tickets = 50 - seats.length;
     }
-    
+
     res.json(concerts);
   }
   catch (err) {
